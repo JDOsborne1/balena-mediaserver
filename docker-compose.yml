@@ -7,6 +7,7 @@ volumes:
   radarr:
   nzbhydra:
   duplicati:
+  qbittorrent:
 
 services:
   # https://hub.docker.com/r/linuxserver/plex
@@ -35,6 +36,24 @@ services:
     environment:
       PUID: "1000"
       PGID: "1000"
+  
+  # https://hub.docker.com/r/linuxserver/qbittorrent      
+  qbittorrent: 
+    build:
+      context: .
+      dockerfile: Dockerfile.qbittorrent
+    privileged: true
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+    volumes:
+      - qbittorrent:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - WEBUI_PORT=8080
+
 
   # https://hub.docker.com/r/linuxserver/sonarr
   sonarr:
