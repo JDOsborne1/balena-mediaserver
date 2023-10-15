@@ -6,4 +6,4 @@ RUN chmod a+x /mount.sh
 
 ENTRYPOINT [ "/bin/sh" ]
 
-CMD [ "-c", "/mount.sh && /init" ]
+CMD [ "-c", "/mount.sh" ]
